@@ -4,6 +4,14 @@
  * @returns {number}
  */
 function calculateFactorial(number) {
+  if (number !== 0 && !number) throw new Error('Number cannot be undefined');
+
+  if (typeof number !== 'number') throw new Error('Argument must be a number');
+
+  if (number < 0) throw new Error('Number cannot be negative');
+
+  if (!Number.isInteger(number)) throw new Error('Number must be an integer');
+
   let result = 1;
 
   for (let current = 1; current <= number; current += 1) {
