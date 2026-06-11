@@ -5,10 +5,18 @@
  * @returns {{characters: number, words: number, sentences: number}}
  */
 function analyzeText(str) {
+  if (!str && str !== '') throw new Error('String cannot be undefined');
+
+  if (typeof str !== 'string') throw new Error('Argument must be a string');
+
+  let sentences;
+
   return {
     characters: str.length,
-    words: str.split(' ').length,
-    sentences: str.split('.').length - 1,
+    words: str.split(' ').filter((el) => el !== '').length,
+    sentences: str.split(' ').every((letter) => letter === '')
+      ? 0
+      : str.split(/[\.|!|\?]/).filter((el) => el !== '').length,
   };
 }
 
