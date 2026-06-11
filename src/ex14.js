@@ -20,11 +20,14 @@ function moveZeroes(numbers) {
   while (numbers.includes(0)) {
     if (numbers[searchIndex] === 0) {
       numbers = [
-        ...numbers.slice(0, numbers.findIndex((num) => num === 0, searchIndex)),
+        ...numbers.slice(
+          0,
+          numbers.findIndex((num) => num === 0, searchIndex),
+        ),
         ...numbers.slice(numbers.findIndex((num) => num === 0, searchIndex) + 1),
       ];
     } else {
-      searchIndex ++;
+      searchIndex++;
     }
   }
 
@@ -36,5 +39,3 @@ function moveZeroes(numbers) {
 }
 
 module.exports = moveZeroes;
-
-const numbers = [0, 1, 0, 3, 12];
