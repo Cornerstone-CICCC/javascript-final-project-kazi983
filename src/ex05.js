@@ -11,7 +11,7 @@ function filterEvenNumbers(arr) {
   if (arr.some((el) => typeof el !== 'number'))
     throw new Error('Array can only contain numbers');
 
-  return [...arr].filter((number) => number % 2 === 0);
+  return arr.filter((number) => number % 2 === 0);
 }
 
 module.exports = filterEvenNumbers;
