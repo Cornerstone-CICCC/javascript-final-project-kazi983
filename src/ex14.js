@@ -12,30 +12,20 @@ function moveZeroes(numbers) {
   if (numbers.some((el) => typeof el !== 'number'))
     throw new Error('Array can only contain numbers');
 
-  let res;
+  let res = [...numbers];
 
   const zeroCount = numbers.filter((num) => num === 0).length;
   let searchIndex = 0;
 
-  while (numbers.includes(0)) {
-    if (numbers[searchIndex] === 0) {
-      numbers = [
-        ...numbers.slice(
-          0,
-          numbers.findIndex((num) => num === 0, searchIndex),
-        ),
-        ...numbers.slice(numbers.findIndex((num) => num === 0, searchIndex) + 1),
-      ];
+  while (searchIndex < numbers.length - zeroCount) {
+    if (res[searchIndex] === 0) {
+      res = res.toSpliced(searchIndex, 1);
+      res.push(0);
     } else {
       searchIndex++;
     }
   }
-
-  for (let i = 0; i < zeroCount; i++) {
-    numbers.push(0);
-  }
-
-  return numbers;
+  return res;
 }
 
 module.exports = moveZeroes;
