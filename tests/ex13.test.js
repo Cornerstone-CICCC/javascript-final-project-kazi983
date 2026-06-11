@@ -13,6 +13,18 @@ describe('checking whether two strings are anagrams', () => {
     expect(checkAnagram('aacc', 'ccac')).toBe(false);
   });
 
+  test('recognizes anagrams with several unique letters', () => {
+    expect(checkAnagram('binary', 'brainy')).toBe(true);
+  });
+
+  test('recognizes anagrams with repeated letters', () => {
+    expect(checkAnagram('aabbcc', 'abcabc')).toBe(true);
+  });
+
+  test('recognizes reversed strings as anagrams', () => {
+    expect(checkAnagram('stressed', 'desserts')).toBe(true);
+  });
+
   test('returns false when the strings have different lengths', () => {
     expect(checkAnagram('ab', 'a')).toBe(false);
   });

@@ -1,66 +1,64 @@
-const findTwoSum = require('../src/ex14');
+const moveZeroes = require('../src/ex14');
 
-describe('finding two numbers that add up to a target', () => {
-  test('finds a pair at the beginning of the array', () => {
-    expect(findTwoSum([2, 7, 11, 15], 9)).toEqual([0, 1]);
+describe('moving zeroes to the end of an array', () => {
+  test('moves zeroes while preserving the other values', () => {
+    expect(moveZeroes([0, 1, 0, 3, 12])).toEqual([1, 3, 12, 0, 0]);
   });
 
-  test('finds a pair later in the array', () => {
-    expect(findTwoSum([3, 2, 4], 6)).toEqual([1, 2]);
+  test('moves a zero from the beginning', () => {
+    expect(moveZeroes([0, 1, 2, 3])).toEqual([1, 2, 3, 0]);
   });
 
-  test('uses two different indices for duplicate numbers', () => {
-    expect(findTwoSum([3, 3], 6)).toEqual([0, 1]);
+  test('keeps a zero at the end', () => {
+    expect(moveZeroes([1, 2, 3, 0])).toEqual([1, 2, 3, 0]);
   });
 
-  test('works with negative numbers', () => {
-    expect(findTwoSum([-3, 4, 3, 90], 0)).toEqual([0, 2]);
+  test('preserves the order of non-zero values', () => {
+    expect(moveZeroes([4, 0, 2, 0, 5, 1])).toEqual([4, 2, 5, 1, 0, 0]);
   });
 
-  test('works with decimal numbers', () => {
-    expect(findTwoSum([1.5, 2.5, 4], 4)).toEqual([0, 1]);
+  test('works with negative and decimal values', () => {
+    expect(moveZeroes([0, -2, 1.5, 0, -1])).toEqual([-2, 1.5, -1, 0, 0]);
   });
 
-  test('returns the first matching pair', () => {
-    expect(findTwoSum([1, 2, 3, 4], 5)).toEqual([0, 3]);
+  test('keeps duplicate non-zero values in order', () => {
+    expect(moveZeroes([2, 0, 1, 2, 0, 1])).toEqual([2, 1, 2, 1, 0, 0]);
   });
 
-  test('returns an empty array when no pair exists', () => {
-    expect(findTwoSum([1, 2, 3], 10)).toEqual([]);
+  test('returns all zeroes when every value is zero', () => {
+    expect(moveZeroes([0, 0, 0])).toEqual([0, 0, 0]);
   });
 
-  test('returns an empty array for fewer than two numbers', () => {
-    expect(findTwoSum([], 5)).toEqual([]);
-    expect(findTwoSum([5], 5)).toEqual([]);
+  test('keeps an array without zeroes unchanged', () => {
+    expect(moveZeroes([3, 1, 2])).toEqual([3, 1, 2]);
+  });
+
+  test('returns an empty array for an empty array', () => {
+    expect(moveZeroes([])).toEqual([]);
+  });
+
+  test('returns a new array', () => {
+    const numbers = [0, 1, 2];
+    expect(moveZeroes(numbers)).not.toBe(numbers);
   });
 
   test('does not change the original array', () => {
-    const numbers = [2, 7, 11, 15];
-    findTwoSum(numbers, 9);
-    expect(numbers).toEqual([2, 7, 11, 15]);
+    const numbers = [0, 1, 0, 3, 12];
+    moveZeroes(numbers);
+    expect(numbers).toEqual([0, 1, 0, 3, 12]);
   });
 
-  test('missing array throws an error message', () => {
-    expect(() => findTwoSum()).toThrow('Array cannot be undefined');
+  test('missing argument throws an error message', () => {
+    expect(() => moveZeroes()).toThrow('Array cannot be undefined');
   });
 
   test('non-array throws an error message', () => {
-    expect(() => findTwoSum('2,7', 9)).toThrow('Argument must be an array');
+    expect(() => moveZeroes('0,1,2')).toThrow('Argument must be an array');
   });
 
   test('array containing a non-number throws an error message', () => {
-    expect(() => findTwoSum([2, '7'], 9)).toThrow(
+    expect(() => moveZeroes([0, '1', 2])).toThrow(
       'Array can only contain numbers',
-    );
-  });
-
-  test('missing target throws an error message', () => {
-    expect(() => findTwoSum([2, 7])).toThrow('Target cannot be undefined');
-  });
-
-  test('non-number target throws an error message', () => {
-    expect(() => findTwoSum([2, 7], '9')).toThrow(
-      'Target must be a number',
     );
   });
 });

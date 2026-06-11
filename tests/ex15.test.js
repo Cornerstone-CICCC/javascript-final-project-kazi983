@@ -10,8 +10,18 @@ describe('finding the longest common prefix', () => {
   });
 
   test('checks strings between the first and last entries', () => {
-    expect(findLongestCommonPrefix(['interview', 'internet', 'interval'])).toBe(
+    expect(findLongestCommonPrefix(['interview', 'interval', 'internet'])).toBe(
       'inter',
+    );
+  });
+
+  test('checks every string when the last string is different', () => {
+    expect(findLongestCommonPrefix(['testing', 'tester', 'team'])).toBe('te');
+  });
+
+  test('does not return a prefix shared by only the first two strings', () => {
+    expect(findLongestCommonPrefix(['apple', 'application', 'banana'])).toBe(
+      '',
     );
   });
 
@@ -26,7 +36,7 @@ describe('finding the longest common prefix', () => {
   });
 
   test('returns an empty string when one entry is empty', () => {
-    expect(findLongestCommonPrefix(['hello', '', 'help'])).toBe('');
+    expect(findLongestCommonPrefix(['hello', 'help', ''])).toBe('');
   });
 
   test('returns the only string in a one-item array', () => {
