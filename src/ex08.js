@@ -19,7 +19,7 @@ function search(arr, keyword) {
 
   if (typeof keyword !== 'string') throw new Error('Keyword must be a string');
 
-  return [...arr].filter((item) => item.toLowerCase().includes(keyword.toLowerCase()));
+  return arr.filter((item) => item.toLowerCase().includes(keyword.toLowerCase()));
 }
 
 module.exports = search;
