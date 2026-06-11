@@ -13,9 +13,9 @@ function classifyNumbers(arr) {
     throw new Error('Array can only contain numbers');
 
   return {
-    positive: [...arr].filter((number) => number > 0),
-    negative: [...arr].filter((number) => number < 0),
-    zero: [...arr].filter((number) => number === 0),
+    positive: arr.filter((number) => number > 0),
+    negative: arr.filter((number) => number < 0),
+    zero: arr.filter((number) => number === 0),
   };
 }
 
