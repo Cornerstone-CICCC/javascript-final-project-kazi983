@@ -4,6 +4,10 @@
  * @returns {number}
  */
 function countVowels(str) {
+  if (!str && str !== '') throw new Error('String cannot be undefined');
+
+  if (typeof str !== 'string') throw new Error('Argument must be a string');
+
   const vowels = 'aeiou';
 
   return str
