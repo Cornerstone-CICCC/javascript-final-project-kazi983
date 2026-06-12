@@ -4,15 +4,28 @@
  * @returns {string}
  */
 function findLongestCommonPrefix(strings) {
+  if (!strings) throw new Error('Array cannot be undefined');
+
+  if (!Array.isArray(strings)) throw new Error('Argument must be an array');
+
+  if (strings.some((el) => typeof el !== 'string'))
+    throw new Error('Array can only contain strings');
+
   if (strings.length === 0) return '';
 
-  const firstString = strings[0];
-  const secondString = strings[1] ?? firstString;
   let prefix = '';
+  const firstString = strings[0];
+  const restStrings = strings.slice(1);
+  let isContinue = true;
 
-  for (let index = 0; index < firstString.length; index += 1) {
-    if (firstString[index] !== secondString[index]) break;
-    prefix += firstString[index];
+  for (let i = 0; i < firstString.length && isContinue; i += 1) {
+    for (const string of restStrings) {
+      if (firstString[i] !== string[i]) {
+        isContinue = false;
+        break;
+      }
+    }
+    if (isContinue) prefix += firstString[i];
   }
 
   return prefix;
